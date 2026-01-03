@@ -27,10 +27,21 @@ export default function LoginPage() {
 
     setLoading(true)
     // TODO: API call
-    setTimeout(() => {
+    try {
+      // شبیه‌سازی API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      
       setLoading(false)
-      router.push('/')
-    }, 1000)
+      // استفاده از window.location برای اطمینان از تغییر صفحه
+      if (typeof window !== 'undefined') {
+        window.location.href = '/'
+      } else {
+        router.replace('/')
+      }
+    } catch (error) {
+      setLoading(false)
+      setError('خطا در ورود به سیستم. لطفا دوباره تلاش کنید.')
+    }
   }
 
   return (

@@ -2,12 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* IRANSans Font Faces */
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/IRANSansWeb_Light.woff2') format('woff2'),
+    url('/fonts/IRANSans/IRANSansWeb_Light.woff') format('woff'),
+    url('/fonts/IRANSans/IRANSansWeb_Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/IRANSansWeb_Regular.woff2') format('woff2'),
+    url('/fonts/IRANSans/IRANSansWeb_Regular.woff') format('woff'),
+    url('/fonts/IRANSans/IRANSansWeb_Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/IRANSansWeb_Bold.woff2') format('woff2'),
+    url('/fonts/IRANSans/IRANSansWeb_Bold.woff') format('woff'),
+    url('/fonts/IRANSans/IRANSansWeb_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/IRANSansWeb_Black.woff2') format('woff2'),
+    url('/fonts/IRANSans/IRANSansWeb_Black.woff') format('woff'),
+    url('/fonts/IRANSans/IRANSansWeb_Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     @apply h-full;
   }
   body {
     @apply h-full bg-slate-50;
+    font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
