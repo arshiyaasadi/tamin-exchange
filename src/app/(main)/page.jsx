@@ -4,6 +4,10 @@ import { formatNumber, formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { PlusIcon } from '@heroicons/react/20/solid'
 
+// #region agent log
+if (typeof window !== 'undefined') { fetch('http://127.0.0.1:7242/ingest/fa5c7cac-c895-4621-801d-ec8cb1014246',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'page.jsx:6',message:'PortfolioPage client component loading',data:{isClient:typeof window !== 'undefined',route:'/(main)/page'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{}); }
+// #endregion
+
 // Mock data - در آینده از API گرفته می‌شود
 const portfolioData = {
   twinAmount: 1250.5,
@@ -19,6 +23,9 @@ const recentTransactions = [
 ]
 
 export default function PortfolioPage() {
+  // #region agent log
+  if (typeof window !== 'undefined') { fetch('http://127.0.0.1:7242/ingest/fa5c7cac-c895-4621-801d-ec8cb1014246',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'page.jsx:22',message:'PortfolioPage function entry',data:{twinAmount:portfolioData.twinAmount},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{}); }
+  // #endregion
   const hasAssets = portfolioData.twinAmount > 0
 
   const stats = [
