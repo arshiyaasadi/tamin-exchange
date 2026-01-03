@@ -32,18 +32,18 @@ export default function PortfolioPage() {
   ]
 
   return (
-    <div dir="rtl" className="px-4 py-6 sm:px-6 lg:px-8 rtl">
+    <div dir="rtl" className="rtl">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-2xl font-bold text-gray-900">دارایی شما</h2>
+        <h2 className="text-2xl font-bold text-gray-100 mb-8">دارایی شما</h2>
 
         {hasAssets ? (
           <>
             <div className="mt-6">
-              <dl className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {stats.map((item) => (
-                  <div key={item.name} className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow-sm sm:p-6">
-                    <dt className="truncate text-sm font-medium text-gray-500">{item.name}</dt>
-                    <dd className={`mt-1 text-3xl font-semibold tracking-tight ${item.color || 'text-gray-900'}`}>
+                  <div key={item.name} className="glass-card rounded-xl px-4 py-5 sm:p-6">
+                    <dt className="truncate text-sm font-medium text-gray-400">{item.name}</dt>
+                    <dd className={`mt-2 text-3xl font-bold tracking-tight ${item.color || 'text-gray-100'}`}>
                       {item.stat}
                     </dd>
                   </div>
@@ -52,11 +52,17 @@ export default function PortfolioPage() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-lg font-semibold text-gray-900">قیمت لحظه‌ای TWIN</h3>
-              <div className="mt-4 rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-200 mb-4">قیمت لحظه‌ای TWIN</h3>
+              <div className="glass-card rounded-xl p-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-gray-900">{formatPrice(portfolioData.currentPrice)}</span>
-                  <span className={`text-sm font-medium ${portfolioData.priceChange > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <div>
+                    <span className="text-3xl font-bold text-gray-100">{formatPrice(portfolioData.currentPrice)}</span>
+                  </div>
+                  <span className={`text-base font-semibold px-3 py-1 rounded-lg ${
+                    portfolioData.priceChange > 0 
+                      ? 'text-green-400 bg-buy-glass' 
+                      : 'text-red-400 bg-sell-glass'
+                  }`}>
                     {portfolioData.priceChange > 0 ? '+' : ''}
                     {portfolioData.priceChange}%
                   </span>
@@ -65,22 +71,26 @@ export default function PortfolioPage() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-lg font-semibold text-gray-900">تراکنش‌های اخیر</h3>
-              <div className="mt-4 overflow-hidden rounded-lg bg-white shadow">
-                <ul role="list" className="divide-y divide-gray-100">
+              <h3 className="text-lg font-semibold text-gray-200 mb-4">تراکنش‌های اخیر</h3>
+              <div className="glass-card rounded-xl overflow-hidden">
+                <ul role="list" className="divide-y divide-white/5">
                   {recentTransactions.map((transaction) => (
-                    <li key={transaction.id} className="flex items-center justify-between gap-x-6 px-4 py-5 sm:px-6">
+                    <li key={transaction.id} className="flex items-center justify-between gap-x-6 px-4 py-5 sm:px-6 hover:bg-white/5 transition-colors">
                       <div className="flex min-w-0 gap-x-4">
-                        <div className={`flex size-10 items-center justify-center rounded-full ${transaction.type === 'buy' ? 'bg-green-100' : 'bg-red-100'}`}>
-                          <span className={`text-sm font-semibold ${transaction.type === 'buy' ? 'text-green-600' : 'text-red-600'}`}>
+                        <div className={`flex size-10 items-center justify-center rounded-lg ${
+                          transaction.type === 'buy' 
+                            ? 'bg-buy-glass text-buy-DEFAULT' 
+                            : 'bg-sell-glass text-sell-DEFAULT'
+                        }`}>
+                          <span className="text-sm font-bold">
                             {transaction.type === 'buy' ? 'خرید' : 'فروش'}
                           </span>
                         </div>
                         <div className="min-w-0 flex-auto">
-                          <p className="text-sm font-semibold text-gray-900">
-                            {transaction.type === 'buy' ? 'خرید' : 'فروش'} {formatNumber(transaction.amount)} TWIN
+                          <p className="text-sm font-semibold text-gray-100">
+                            {transaction.type === 'buy' ? 'خرید' : 'فروش'} <span className="text-gray-300">{formatNumber(transaction.amount)}</span> <span className="text-gray-400 text-xs">TWIN</span>
                           </p>
-                          <p className="mt-1 truncate text-xs text-gray-500">
+                          <p className="mt-1 truncate text-xs text-gray-400">
                             {new Intl.DateTimeFormat('fa-IR', {
                               year: 'numeric',
                               month: 'long',
@@ -92,7 +102,7 @@ export default function PortfolioPage() {
                         </div>
                       </div>
                       <div className="shrink-0 text-end">
-                        <p className="text-sm font-semibold text-gray-900">{formatPrice(transaction.price)}</p>
+                        <p className="text-sm font-bold text-gray-100">{formatPrice(transaction.price)}</p>
                       </div>
                     </li>
                   ))}
@@ -101,7 +111,7 @@ export default function PortfolioPage() {
             </div>
           </>
         ) : (
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center glass-card rounded-xl p-8">
             <svg
               fill="none"
               stroke="currentColor"
@@ -117,12 +127,12 @@ export default function PortfolioPage() {
                 strokeLinejoin="round"
               />
             </svg>
-            <h3 className="mt-2 text-sm font-semibold text-gray-900">هنوز TWIN ندارید</h3>
-            <p className="mt-1 text-sm text-gray-500">برای شروع معامله، به صفحه معامله بروید</p>
+            <h3 className="mt-4 text-sm font-semibold text-gray-200">هنوز TWIN ندارید</h3>
+            <p className="mt-2 text-sm text-gray-400">برای شروع معامله، به صفحه معامله بروید</p>
             <div className="mt-6">
               <Link
                 href="/trade"
-                className="inline-flex items-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                className="inline-flex items-center rounded-xl glass-light px-4 py-2.5 text-sm font-semibold text-gray-100 hover:bg-white/10 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400/50"
               >
                 <PlusIcon aria-hidden="true" className="me-1.5 -ms-0.5 size-5" />
                 شروع معامله

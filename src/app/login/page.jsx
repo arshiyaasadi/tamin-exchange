@@ -45,18 +45,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div dir="rtl" className="flex min-h-screen flex-1 flex-col justify-center bg-slate-50 px-6 py-12 lg:px-8 rtl">
+    <div dir="rtl" className="flex min-h-screen flex-1 flex-col justify-center bg-slate-900 px-6 py-12 lg:px-8 rtl">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-100">
           ورود به حساب کاربری
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">ورود / ادامه با شماره موبایل</p>
+        <p className="mt-2 text-center text-sm text-gray-400">ورود / ادامه با شماره موبایل</p>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="glass-card rounded-2xl p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="mobile" className="block text-sm/6 font-medium text-gray-900">
+            <label htmlFor="mobile" className="block text-sm/6 font-medium text-gray-200 mb-2">
               شماره موبایل
             </label>
             <div className="mt-2">
@@ -67,19 +68,19 @@ export default function LoginPage() {
                 required
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6"
+                className="glass-input block w-full rounded-xl px-4 py-3 text-base text-gray-100 placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
                 placeholder="09123456789"
               />
             </div>
           </div>
 
           <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+            <div className="flex items-center justify-between mb-2">
+              <label htmlFor="password" className="block text-sm/6 font-medium text-gray-200">
                 رمز عبور
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-purple-600 hover:text-purple-500">
+                <a href="#" className="font-semibold text-purple-400 hover:text-purple-300 transition-colors">
                   فراموشی رمز عبور؟
                 </a>
               </div>
@@ -92,14 +93,14 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6"
+                className="glass-input block w-full rounded-xl px-4 py-3 text-base text-gray-100 placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
               />
             </div>
           </div>
 
           {error && (
-            <div className="rounded-md bg-red-50 p-4">
-              <p className="text-sm text-red-800">{error}</p>
+            <div className="glass-light rounded-xl p-4 border border-red-400/30">
+              <p className="text-sm text-red-300">{error}</p>
             </div>
           )}
 
@@ -107,12 +108,13 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 disabled:opacity-50"
+              className="flex w-full justify-center rounded-xl bg-purple-600 px-4 py-3.5 text-sm/6 font-bold text-white shadow-lg shadow-purple-600/30 hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
               {loading ? 'در حال ورود...' : 'ورود'}
             </button>
           </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )

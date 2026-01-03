@@ -15,7 +15,7 @@ export default function BottomNavigation() {
   const pathname = usePathname()
 
   return (
-    <nav dir="rtl" className="fixed bottom-0 start-0 end-0 z-50 border-t border-gray-200 bg-white rtl">
+    <nav dir="rtl" className="fixed bottom-0 start-0 end-0 z-50 glass-nav rtl">
       <div className="flex h-16 items-center justify-around">
         {navigation.map((item) => {
           const isActive = pathname === item.href
@@ -24,12 +24,16 @@ export default function BottomNavigation() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex flex-col items-center justify-center px-4 py-2 transition-colors ${
-                isActive ? 'text-purple-600' : 'text-gray-500 hover:text-gray-700'
+              className={`flex flex-col items-center justify-center px-4 py-2 transition-all duration-200 ${
+                isActive 
+                  ? 'text-purple-400 scale-105' 
+                  : 'text-gray-400 hover:text-gray-300'
               }`}
             >
               <Icon className="size-6" />
-              <span className="mt-1 text-xs font-medium">{item.name}</span>
+              <span className={`mt-1 text-xs font-medium ${isActive ? 'font-semibold' : ''}`}>
+                {item.name}
+              </span>
             </Link>
           )
         })}

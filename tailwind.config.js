@@ -23,6 +23,23 @@ module.exports = {
           800: '#6b21a8',
           900: '#581c87',
         },
+        glass: {
+          white: 'rgba(255, 255, 255, 0.05)',
+          'white-light': 'rgba(255, 255, 255, 0.08)',
+          gray: 'rgba(148, 163, 184, 0.1)',
+        },
+        buy: {
+          DEFAULT: '#10b981',
+          light: '#34d399',
+          dark: '#059669',
+          glass: 'rgba(16, 185, 129, 0.15)',
+        },
+        sell: {
+          DEFAULT: '#ef4444',
+          light: '#f87171',
+          dark: '#dc2626',
+          glass: 'rgba(239, 68, 68, 0.15)',
+        },
       },
     },
   },

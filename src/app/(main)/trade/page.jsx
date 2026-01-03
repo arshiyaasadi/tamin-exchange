@@ -56,13 +56,13 @@ export default function TradePage() {
   }
 
   return (
-    <div dir="rtl" className="px-4 py-6 sm:px-6 lg:px-8 rtl">
+    <div dir="rtl" className="rtl">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-2xl font-bold text-gray-900">معامله</h2>
+        <h2 className="text-2xl font-bold text-gray-100 mb-6">معامله</h2>
 
         {/* TradingView Widget */}
         <div className="mt-6">
-          <div className="h-96 rounded-lg bg-white p-4 shadow-sm">
+          <div className="h-96 rounded-xl glass-card p-4">
             <Script
               src="https://s3.tradingview.com/tv.js"
               strategy="afterInteractive"
@@ -73,10 +73,10 @@ export default function TradePage() {
                     symbol: 'BINANCE:BTCUSDT',
                     interval: 'D',
                     timezone: 'Asia/Tehran',
-                    theme: 'light',
+                    theme: 'dark',
                     style: '1',
                     locale: 'fa_IR',
-                    toolbar_bg: '#f1f3f6',
+                    toolbar_bg: 'rgba(15, 23, 42, 0.8)',
                     enable_publishing: false,
                     hide_top_toolbar: false,
                     hide_legend: false,
@@ -91,44 +91,40 @@ export default function TradePage() {
         </div>
 
         {/* Order Book */}
-        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="rounded-lg bg-white p-4 shadow-sm">
-            <h3 className="text-sm font-semibold text-gray-900">خرید</h3>
-            <div className="mt-4">
-              <div className="space-y-2">
-                {orderBook.buys.map((order, index) => (
-                  <div key={index} className="flex items-center justify-between text-sm">
-                    <span className="text-green-600 font-medium">{formatPrice(order.price)}</span>
-                    <span className="text-gray-700">{formatNumber(order.amount)}</span>
-                  </div>
-                ))}
-              </div>
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="glass-card rounded-xl p-4">
+            <h3 className="text-sm font-semibold text-buy-DEFAULT mb-4">خرید</h3>
+            <div className="mt-4 space-y-3">
+              {orderBook.buys.map((order, index) => (
+                <div key={index} className="flex items-center justify-between text-sm py-2">
+                  <span className="text-buy-DEFAULT font-semibold">{formatPrice(order.price)}</span>
+                  <span className="text-gray-300">{formatNumber(order.amount)}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="rounded-lg bg-white p-4 shadow-sm">
-            <h3 className="text-sm font-semibold text-gray-900">فروش</h3>
-            <div className="mt-4">
-              <div className="space-y-2">
-                {orderBook.sells.map((order, index) => (
-                  <div key={index} className="flex items-center justify-between text-sm">
-                    <span className="text-red-600 font-medium">{formatPrice(order.price)}</span>
-                    <span className="text-gray-700">{formatNumber(order.amount)}</span>
-                  </div>
-                ))}
-              </div>
+          <div className="glass-card rounded-xl p-4">
+            <h3 className="text-sm font-semibold text-sell-DEFAULT mb-4">فروش</h3>
+            <div className="mt-4 space-y-3">
+              {orderBook.sells.map((order, index) => (
+                <div key={index} className="flex items-center justify-between text-sm py-2">
+                  <span className="text-sell-DEFAULT font-semibold">{formatPrice(order.price)}</span>
+                  <span className="text-gray-300">{formatNumber(order.amount)}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Order Form */}
-        <div className="mt-6 rounded-lg bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-900">ثبت سفارش</h3>
+        <div className="mt-6 glass-card rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-gray-100 mb-6">ثبت سفارش</h3>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-6">
             {/* Order Type */}
             <div>
-              <label className="text-sm font-semibold text-gray-900">نوع سفارش</label>
+              <label className="text-sm font-semibold text-gray-200 mb-3 block">نوع سفارش</label>
               <div className="mt-2 space-y-3">
                 <div className="flex items-center">
                   <input
@@ -137,9 +133,9 @@ export default function TradePage() {
                     type="radio"
                     checked={orderType === 'market'}
                     onChange={() => setOrderType('market')}
-                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-purple-600 checked:bg-purple-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                    className="relative size-4 appearance-none rounded-full border-2 border-gray-500 glass-input before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-purple-400 checked:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400/50"
                   />
-                  <label htmlFor="market" className="ms-3 block text-sm font-medium text-gray-900">
+                  <label htmlFor="market" className="ms-3 block text-sm font-medium text-gray-300">
                     Market
                   </label>
                 </div>
@@ -150,9 +146,9 @@ export default function TradePage() {
                     type="radio"
                     checked={orderType === 'limit'}
                     onChange={() => setOrderType('limit')}
-                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-purple-600 checked:bg-purple-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                    className="relative size-4 appearance-none rounded-full border-2 border-gray-500 glass-input before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-purple-400 checked:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400/50"
                   />
-                  <label htmlFor="limit" className="ms-3 block text-sm font-medium text-gray-900">
+                  <label htmlFor="limit" className="ms-3 block text-sm font-medium text-gray-300">
                     Limit
                   </label>
                 </div>
@@ -160,14 +156,14 @@ export default function TradePage() {
             </div>
 
             {/* Order Side */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => setOrderSide('buy')}
-                className={`rounded-md px-4 py-3 text-sm font-semibold transition-colors ${
+                className={`rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
                   orderSide === 'buy'
-                    ? 'bg-green-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-buy-DEFAULT text-white shadow-lg shadow-buy-DEFAULT/20'
+                    : 'glass-light text-gray-300 hover:bg-white/10'
                 }`}
               >
                 خرید
@@ -175,10 +171,10 @@ export default function TradePage() {
               <button
                 type="button"
                 onClick={() => setOrderSide('sell')}
-                className={`rounded-md px-4 py-3 text-sm font-semibold transition-colors ${
+                className={`rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
                   orderSide === 'sell'
-                    ? 'bg-red-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-sell-DEFAULT text-white shadow-lg shadow-sell-DEFAULT/20'
+                    : 'glass-light text-gray-300 hover:bg-white/10'
                 }`}
               >
                 فروش
@@ -187,7 +183,7 @@ export default function TradePage() {
 
             {/* Amount */}
             <div>
-              <label htmlFor="amount" className="block text-sm font-medium text-gray-900">
+              <label htmlFor="amount" className="block text-sm font-medium text-gray-200 mb-2">
                 مقدار (TWIN)
               </label>
               <div className="mt-2">
@@ -197,7 +193,7 @@ export default function TradePage() {
                   type="text"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6"
+                  className="glass-input block w-full rounded-xl px-4 py-3 text-base text-gray-100 placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
                   placeholder="0.00"
                 />
               </div>
@@ -206,7 +202,7 @@ export default function TradePage() {
             {/* Price (only for Limit) */}
             {orderType === 'limit' && (
               <div>
-                <label htmlFor="price" className="block text-sm font-medium text-gray-900">
+                <label htmlFor="price" className="block text-sm font-medium text-gray-200 mb-2">
                   قیمت (تومان)
                 </label>
                 <div className="mt-2">
@@ -216,7 +212,7 @@ export default function TradePage() {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-600 sm:text-sm/6"
+                    className="glass-input block w-full rounded-xl px-4 py-3 text-base text-gray-100 placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
                     placeholder="0"
                   />
                 </div>
@@ -224,26 +220,26 @@ export default function TradePage() {
             )}
 
             {/* Fee */}
-            <div className="rounded-md bg-slate-50 p-3">
+            <div className="glass-light rounded-xl p-3">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">کارمزد</span>
-                <span className="font-medium text-gray-900">0.1%</span>
+                <span className="text-gray-400">کارمزد</span>
+                <span className="font-semibold text-gray-200">0.1%</span>
               </div>
             </div>
 
             {error && (
-              <div className="rounded-md bg-red-50 p-4">
-                <p className="text-sm text-red-800">{error}</p>
+              <div className="glass-light rounded-xl p-4 border border-red-400/30">
+                <p className="text-sm text-red-300">{error}</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className={`w-full rounded-md px-4 py-3 text-sm font-semibold text-white shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 disabled:opacity-50 ${
+              className={`w-full rounded-xl px-4 py-3.5 text-sm font-bold text-white shadow-lg transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                 orderSide === 'buy'
-                  ? 'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'
-                  : 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600'
+                  ? 'bg-buy-DEFAULT hover:bg-buy-light focus-visible:outline-buy-DEFAULT shadow-buy-DEFAULT/30'
+                  : 'bg-sell-DEFAULT hover:bg-sell-light focus-visible:outline-sell-DEFAULT shadow-sell-DEFAULT/30'
               }`}
             >
               {loading ? 'در حال ثبت...' : orderSide === 'buy' ? 'خرید' : 'فروش'}
