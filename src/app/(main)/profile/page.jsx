@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { removeToken } from '@/lib/utils'
 
 // Mock data
 const userData = {
@@ -15,10 +16,19 @@ export default function ProfilePage() {
   const handleLogout = async () => {
     if (confirm('آیا مطمئن هستید که می‌خواهید خارج شوید؟')) {
       setLoading(true)
-      // TODO: API call
+      // TODO: API call برای خروج از سرور
+      
+      // حذف توکن از کوکی
+      removeToken()
+      
       setTimeout(() => {
         setLoading(false)
-        router.push('/login')
+        // استفاده از window.location برای اطمینان از تغییر صفحه
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login'
+        } else {
+          router.push('/login')
+        }
       }, 1000)
     }
   }

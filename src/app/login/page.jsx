@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { validateMobile } from '@/lib/utils'
+import { validateMobile, setToken, isAuthenticated } from '@/lib/utils'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -10,6 +10,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // اگر کاربر قبلاً لاگین کرده، به صفحه اصلی هدایت شود
+  useEffect(() => {
+    if (isAuthenticated()) {
+      router.replace('/')
+    }
+  }, [router])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,6 +37,12 @@ export default function LoginPage() {
     try {
       // شبیه‌سازی API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
+      
+      // تولید توکن (در آینده از API دریافت می‌شود)
+      const token = `token_${mobile}_${Date.now()}`
+      
+      // ذخیره توکن در کوکی
+      setToken(token)
       
       setLoading(false)
       // استفاده از window.location برای اطمینان از تغییر صفحه
