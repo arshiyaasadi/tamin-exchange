@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next node_modules/.cache && npm run build",
+  "buildCommand": "rm -rf .next node_modules/.cache .vercel && npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",

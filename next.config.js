@@ -26,6 +26,12 @@ const nextConfig = {
     return config;
   },
   // #endregion
+  // Fix for route groups client reference manifest
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
 }
 
 module.exports = nextConfig
