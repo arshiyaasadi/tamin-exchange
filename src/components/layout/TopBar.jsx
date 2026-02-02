@@ -2,6 +2,7 @@
 
 import { BellIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { config } from '@/lib/config'
 import NotificationDrawer from './NotificationDrawer'
 
 export default function TopBar() {
@@ -13,7 +14,7 @@ export default function TopBar() {
       <header dir="rtl" className="sticky top-0 z-40 glass-nav rtl">
         <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold text-gray-100">TWIN</h1>
+            <h1 className="text-xl font-bold text-gray-100">{config.appName}</h1>
           </div>
           <button
             type="button"

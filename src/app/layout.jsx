@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'صرافی TWIN',
-  description: 'صرافی دیجیتال برای خرید و فروش ارز TWIN',
+  title: 'صرافی TWIN - خرید و فروش ارز دیجیتال',
+  description: 'صرافی ارز دیجیتال TWIN - تجربه معاملاتی امن، سریع و حرفه‌ای برای خرید و فروش ارز TWIN',
 }
 
 export default function RootLayout({ children }) {
