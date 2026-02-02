@@ -10,9 +10,6 @@ export default function MainLayout({ children }) {
   const router = useRouter()
   const pathname = usePathname()
   const [isChecking, setIsChecking] = useState(true)
-  // #region agent log
-  if (typeof window !== 'undefined') { fetch('http://127.0.0.1:7242/ingest/fa5c7cac-c895-4621-801d-ec8cb1014246',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'layout.jsx:10',message:'MainLayout client component rendering',data:{hasChildren:!!children,route:'/(main)/layout'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{}); }
-  // #endregion
 
   const isTradePage = pathname === '/trade'
 
