@@ -12,10 +12,11 @@ export default function MainLayout({ children }) {
   const [isChecking, setIsChecking] = useState(true)
 
   const isTradePage = pathname === '/trade'
+  const isHomePage = pathname === '/home'
 
   useEffect(() => {
-    // صفحه معامله بدون لاگین قابل مشاهده است
-    if (isTradePage) {
+    // صفحه معامله و home بدون لاگین قابل مشاهده است
+    if (isTradePage || isHomePage) {
       setIsChecking(false)
       return
     }
@@ -25,15 +26,20 @@ export default function MainLayout({ children }) {
     } else {
       setIsChecking(false)
     }
-  }, [router, isTradePage])
+  }, [router, isTradePage, isHomePage])
 
-  // نمایش loading در حین بررسی احراز هویت (صفحه معامله بدون لاگین نیازی به بررسی ندارد)
-  if (isChecking && !isTradePage) {
+  // نمایش loading در حین بررسی احراز هویت (صفحه معامله و home بدون لاگین نیازی به بررسی ندارد)
+  if (isChecking && !isTradePage && !isHomePage) {
     return (
       <div dir="rtl" className="flex min-h-screen flex-col items-center justify-center bg-slate-900 rtl">
         <div className="text-gray-400">در حال بررسی...</div>
       </div>
     )
+  }
+
+  // برای صفحه home، layout را نمایش نده
+  if (isHomePage) {
+    return <>{children}</>
   }
 
   return (

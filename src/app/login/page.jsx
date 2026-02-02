@@ -159,7 +159,7 @@ export default function LoginPage() {
   const goBack = () => {
     setError('')
     if (step === STEPS.mobile) {
-      router.push('/')
+      router.push('/home')
       return
     }
     if (step === STEPS.password) setStep(STEPS.mobile)

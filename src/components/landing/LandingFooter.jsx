@@ -36,7 +36,7 @@ export default function LandingFooter() {
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div>
-            <Link href="/" className="group inline-block">
+            <Link href="/home" className="group inline-block">
               <span className="text-2xl font-bold text-white bg-gradient-to-r from-white to-primary-300 bg-clip-text text-transparent group-hover:from-primary-300 group-hover:to-primary-400 transition-all duration-300">
                 TWIN
               </span>

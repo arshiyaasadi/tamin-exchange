@@ -46,7 +46,7 @@ export default function LandingHeader() {
     setIsLoggedIn(false)
     setDropdownOpen(false)
     setMobileMenuOpen(false)
-    router.push('/')
+    router.push('/home')
   }
 
   return (
@@ -66,7 +66,7 @@ export default function LandingHeader() {
             <span className="sr-only">باز کردن منو</span>
             <Bars3Icon aria-hidden="true" className="size-5" />
           </button>
-          <Link href="/" className="group">
+                <Link href="/home" className="group">
             <span className="sr-only">صرافی TWIN</span>
             <span className="text-xl font-bold text-white bg-gradient-to-r from-white to-primary-300 bg-clip-text text-transparent group-hover:from-primary-300 group-hover:to-primary-400 transition-all duration-300">
               TWIN
@@ -78,7 +78,7 @@ export default function LandingHeader() {
         <div className="hidden lg:flex lg:items-center lg:flex-1 lg:justify-between">
           {/* لوگو */}
           <div className="flex-1">
-            <Link href="/" className="-m-1.5 p-1.5 group inline-block">
+            <Link href="/home" className="-m-1.5 p-1.5 group inline-block">
               <span className="sr-only">صرافی TWIN</span>
               <span className="text-2xl font-bold text-white bg-gradient-to-r from-white to-primary-300 bg-clip-text text-transparent group-hover:from-primary-300 group-hover:to-primary-400 transition-all duration-300">
                 TWIN
