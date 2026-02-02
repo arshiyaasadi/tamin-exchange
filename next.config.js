@@ -26,6 +26,10 @@ const nextConfig = {
     return config;
   },
   // #endregion
+  // Fix for client reference manifest issues in route groups
+  outputFileTracingIncludes: {
+    '/**': ['./node_modules/**/*'],
+  },
 }
 
 module.exports = nextConfig

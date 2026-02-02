@@ -202,7 +202,7 @@ export default function Aurora({
       }
       gl.getExtension('WEBGL_lose_context')?.loseContext()
     }
-  }, [amplitude, blend, colorStops, speed])
+  }, [amplitude, blend, colorStops, speed, time])
 
   return <div ref={ctnDom} className="w-full h-full absolute inset-0 -z-10" />
 }
